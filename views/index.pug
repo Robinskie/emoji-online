@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .user-field 
+    .field-headers
+      span.username-header Username 
+      span.emoji-header Emoji 
+    .field-inputs
+      input#usernameInput(type="text" placeholder='Username')
+      select#emojiInput
+        option(value='😀') 😀
+        option(value='😂') 😂
+        option(value='😑') 😑
+        option(value='😔') 😔
+        option(value='🙃') 🙃
+        option(value='😡') 😡
+        option(value='🐱') 🐱
+        option(value='🐠') 🐠
+        option(value='🦔') 🦔
+        option(value='🐪') 🐪
+        option(value='🐺') 🐺
+        option(value='👽') 👽
+        option(value='🐒') 🐒
+        option(value='🐸') 🐸
+        option(value='🦝') 🦝
+    button#btnEnter Enter
+
+  canvas#gameCanvas
+
+  script(src='/javascripts/primus.js')
+  script(src='/javascripts/game.js')
