@@ -1,5 +1,7 @@
 let primus;
 
+let GAME_STARTED = false;
+
 const gameCanvas = document.querySelector('#gameCanvas');
 const c = gameCanvas.getContext('2d');
 
@@ -82,7 +84,11 @@ const init = () => {
         // Receive initial id
         if(data.type == 'id') {
             player.id = data.id;
-            loop();
+
+            if(!GAME_STARTED) {
+                GAME_STARTED = true;
+                setInterval(loop, 16);
+            }         
         } 
 
         // Receive player data
@@ -121,8 +127,6 @@ loop = _ => {
         if(otherPlayer.id != player.id)
             drawPlayer(otherPlayer);
     })
-
-    window.requestAnimationFrame(loop);
 }
 
 const drawPlayer = player => {
@@ -140,7 +144,8 @@ btnEnter.addEventListener('click', _ => {
 
         userField.style.display = 'none';
 
-        init();
+        if(!GAME_STARTED)
+            init();
     } else {
         usernameInput.style.backgroundColor = '#F8E2DD'
     }
